@@ -1,74 +1,71 @@
-import { motion } from 'framer-motion'
+import AnimatedSection from './AnimatedSection.jsx'
 import { ArrowRight, ChevronDown, CheckCircle2 } from 'lucide-react'
-import { metrics, quickStats } from '../data/content.js'
-import HeroEvidencePanel from './hero/HeroEvidencePanel.jsx'
-import TechnicalGridBackground from './visual/TechnicalGridBackground.jsx'
 
-const heroImage =
-  'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1800&q=82'
+const heroImage = 'https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1800&q=80'
+
+const badges = [
+  'Media y baja tensión',
+  'Instalaciones industriales',
+  'Respuesta técnica',
+  'Cumplimiento y seguridad'
+]
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative isolate min-h-[calc(100vh-5rem)] overflow-hidden bg-navy text-white">
-      <div className="absolute inset-0 -z-20 bg-cover bg-center" style={{ backgroundImage: `url(${heroImage})` }} />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(11,31,51,0.94),rgba(11,31,51,0.78)_44%,rgba(11,31,51,0.5))]" />
-      <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-navy to-transparent" />
-      <TechnicalGridBackground className="opacity-35" />
+    <section id="inicio" className="relative min-h-[90vh] bg-navy pt-20 flex items-center">
+      {/* Background Image with Dark Overlay */}
+      <div 
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-luminosity" 
+        style={{ backgroundImage: `url(${heroImage})` }} 
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-r from-navy via-navy/90 to-navy/40" />
 
-      <div className="container-page grid min-h-[calc(100vh-5rem)] items-center gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:py-20">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <p className="inline-flex items-center gap-2 rounded-md border border-white/20 bg-white/10 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-electric backdrop-blur">
-            Infraestructura eléctrica MT/BT
-          </p>
-          <h1 className="mt-6 max-w-4xl text-4xl font-extrabold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
-            Instalaciones eléctricas de media y baja tensión para proyectos que no pueden fallar
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-200 sm:text-xl">
-            En Norte Firme diseñamos, instalamos y mantenemos infraestructura eléctrica segura, ordenada y confiable para
-            proyectos industriales, comerciales y de construcción.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <a href="#contacto" className="btn-primary">
-              Solicitar cotización
-              <ArrowRight size={18} />
-            </a>
-            <a href="#servicios" className="btn-secondary">
-              Ver servicios
-              <ChevronDown size={18} />
-            </a>
+      <div className="container-page relative z-10 grid gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-24 items-center">
+        
+        {/* Left Content */}
+        <AnimatedSection delay={0.1}>
+          <div className="max-w-3xl">
+            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              Instalaciones eléctricas de media y baja tensión para proyectos que no pueden fallar
+            </h1>
+            <p className="mt-6 text-xl font-semibold text-mist leading-snug">
+              Diseñamos, instalamos y mantenemos infraestructura eléctrica segura, ordenada y confiable para proyectos industriales, comerciales y de construcción.
+            </p>
+            <p className="mt-4 text-lg text-gray leading-relaxed">
+              Trabajamos con criterio técnico, control de obra y enfoque en cumplimiento desde el levantamiento hasta la entrega final.
+            </p>
+            
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <a href="#contacto" className="btn-primary">
+                Solicitar cotización
+                <ArrowRight size={18} />
+              </a>
+              <a href="#servicios" className="btn-secondary-white">
+                Ver servicios
+                <ChevronDown size={18} />
+              </a>
+            </div>
           </div>
-        </motion.div>
+        </AnimatedSection>
 
-        <motion.div
-          className="grid gap-4 lg:justify-self-end"
-          initial={{ opacity: 0, x: 28 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.75, delay: 0.1 }}
-        >
-          <HeroEvidencePanel />
-          <div className="grid gap-3 sm:grid-cols-2">
-            {metrics.map((metric) => (
-              <div key={metric} className="rounded-lg border border-white/18 bg-white/12 p-4 shadow-2xl shadow-slate-950/20 backdrop-blur-md">
-                <CheckCircle2 className="text-electric" size={22} />
-                <p className="mt-3 text-sm font-bold leading-6 text-white">{metric}</p>
-              </div>
-            ))}
-          </div>
-          <div className="grid gap-3 rounded-lg border border-white/18 bg-navy/70 p-4 backdrop-blur-md sm:grid-cols-3">
-            {quickStats.map((stat) => {
-              const Icon = stat.icon
-              return (
-                <div key={stat.label} className="flex items-center gap-3">
-                  <Icon className="shrink-0 text-electric" size={22} />
-                  <span>
-                    <span className="block text-lg font-extrabold">{stat.value}</span>
-                    <span className="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-300">{stat.label}</span>
-                  </span>
-                </div>
-              )
-            })}
-          </div>
-        </motion.div>
+        {/* Right Content - 2D Floating Cards */}
+        <AnimatedSection delay={0.3} staggerChildren={true} className="grid gap-4 sm:grid-cols-2 lg:justify-self-end w-full max-w-lg">
+          {badges.map((badge, index) => (
+            <AnimatedSection key={badge} as="div" className="flex items-center gap-3 bg-white/5 border border-white/10 p-5 rounded backdrop-blur-sm">
+              <CheckCircle2 className="text-electric shrink-0" size={24} />
+              <span className="font-semibold text-white">{badge}</span>
+            </AnimatedSection>
+          ))}
+          
+          {/* Main callout card */}
+          <AnimatedSection as="div" className="sm:col-span-2 bg-white p-6 rounded shadow-lg mt-2 border-l-4 border-electric">
+            <h3 className="font-extrabold text-navy text-xl">Atención especializada</h3>
+            <p className="mt-2 text-gray text-sm leading-relaxed">
+              Nuestros ingenieros y técnicos están capacitados para resolver requerimientos complejos en entornos industriales operativos sin interrumpir su producción.
+            </p>
+          </AnimatedSection>
+        </AnimatedSection>
+
       </div>
     </section>
   )

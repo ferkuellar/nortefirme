@@ -1,33 +1,50 @@
-import { motion } from 'framer-motion'
-import { CheckCircle2 } from 'lucide-react'
-import SectionHeader from './SectionHeader.jsx'
-import { differentiators } from '../data/content.js'
+import { 
+  ClipboardList, 
+  Calculator, 
+  LayoutList, 
+  ShieldCheck, 
+  Users, 
+  FolderCheck, 
+  Building2, 
+  Timer 
+} from 'lucide-react'
+import AnimatedSection from './AnimatedSection.jsx'
+
+const differentiators = [
+  { icon: ClipboardList, text: 'Atención técnica desde el levantamiento' },
+  { icon: Calculator, text: 'Presupuestos claros y defendibles' },
+  { icon: LayoutList, text: 'Ejecución ordenada en obra' },
+  { icon: ShieldCheck, text: 'Seguridad para personal e instalaciones' },
+  { icon: Users, text: 'Coordinación con contratistas y residentes' },
+  { icon: FolderCheck, text: 'Documentación de entrega' },
+  { icon: Building2, text: 'Capacidad para proyectos de construcción e infraestructura' },
+  { icon: Timer, text: 'Respuesta rápida ante requerimientos críticos' }
+]
 
 export default function Differentiators() {
   return (
-    <section className="section-padding bg-navy text-white">
-      <div className="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-        <SectionHeader
-          eyebrow="Por qué elegir Norte Firme"
-          title="Respuesta técnica para obra real"
-          copy="Trabajamos con claridad desde la primera visita para que cada decisión eléctrica tenga sustento técnico, costo defendible y ejecución controlada."
-          className="[&_.eyebrow]:text-electric [&_.section-copy]:text-slate-300 [&_.section-title]:text-white"
-        />
+    <section className="section-padding bg-white border-t border-gray/10">
+      <div className="container-page">
+        <AnimatedSection className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="section-title text-navy mx-auto">Por qué elegir Norte Firme</h2>
+        </AnimatedSection>
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          {differentiators.map((item, index) => (
-            <motion.div
-              key={item}
-              className="flex gap-3 rounded-lg border border-white/10 bg-white/8 p-5 backdrop-blur"
-              initial={{ opacity: 0, x: 18 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 0.45, delay: (index % 4) * 0.05 }}
-            >
-              <CheckCircle2 className="mt-0.5 shrink-0 text-electric" size={21} />
-              <p className="font-semibold leading-7 text-slate-100">{item}</p>
-            </motion.div>
-          ))}
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {differentiators.map((diff, index) => {
+            const Icon = diff.icon
+            return (
+              <AnimatedSection 
+                key={index} 
+                delay={index * 0.05}
+                className="flex items-center gap-4 p-5 rounded border border-gray/10 bg-mist hover:bg-white hover:shadow-sm transition-all"
+              >
+                <div className="flex shrink-0 h-10 w-10 items-center justify-center rounded bg-navy text-electric">
+                  <Icon size={20} />
+                </div>
+                <span className="font-semibold text-sm text-navy leading-tight">{diff.text}</span>
+              </AnimatedSection>
+            )
+          })}
         </div>
       </div>
     </section>

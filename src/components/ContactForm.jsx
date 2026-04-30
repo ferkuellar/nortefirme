@@ -1,72 +1,126 @@
-import { Send } from 'lucide-react'
-import SectionHeader from './SectionHeader.jsx'
-
-const inputClass =
-  'w-full rounded-md border border-slate-300 bg-white px-4 py-3 text-sm font-medium text-carbon outline-none transition placeholder:text-slate-400 focus:border-steel focus:ring-4 focus:ring-steel/10'
+import { useState } from 'react'
+import AnimatedSection from './AnimatedSection.jsx'
 
 export default function ContactForm() {
-  return (
-    <section id="contacto" className="section-padding bg-white">
-      <div className="container-page grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-        <div>
-          <SectionHeader
-            eyebrow="Contacto"
-            title="Solicita una revisión técnica"
-            copy="Respondemos con enfoque técnico, no con respuestas genéricas."
-          />
-          <div className="mt-8 rounded-lg bg-navy p-6 text-white">
-            <p className="text-sm font-bold uppercase tracking-[0.18em] text-electric">Datos directos</p>
-            <a href="tel:614177711" className="mt-4 block text-3xl font-extrabold">614 177 711</a>
-            <a href="mailto:contacto@nortefirme.com.mx" className="mt-3 block font-semibold text-slate-200">
-              contacto@nortefirme.com.mx
-            </a>
-            <p className="mt-3 font-semibold text-slate-300">Chihuahua, México</p>
-          </div>
-        </div>
+  const [status, setStatus] = useState('idle')
 
-        <form className="rounded-lg border border-slate-200 bg-mist p-5 shadow-sm sm:p-7">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Nombre
-              <input className={inputClass} type="text" name="nombre" autoComplete="name" placeholder="Nombre completo" />
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Empresa
-              <input className={inputClass} type="text" name="empresa" autoComplete="organization" placeholder="Empresa o proyecto" />
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Teléfono
-              <input className={inputClass} type="tel" name="telefono" autoComplete="tel" placeholder="Teléfono de contacto" />
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Correo
-              <input className={inputClass} type="email" name="correo" autoComplete="email" placeholder="correo@empresa.com" />
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Tipo de proyecto
-              <select className={inputClass} name="tipoProyecto" defaultValue="">
-                <option value="" disabled>Seleccionar</option>
-                <option>Media tensión</option>
-                <option>Baja tensión</option>
-                <option>Subestación o transformador</option>
-                <option>Mantenimiento eléctrico</option>
-                <option>Obra eléctrica en construcción</option>
-              </select>
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy">
-              Ciudad
-              <input className={inputClass} type="text" name="ciudad" autoComplete="address-level2" placeholder="Ciudad del proyecto" />
-            </label>
-            <label className="grid gap-2 text-sm font-bold text-navy sm:col-span-2">
-              Mensaje
-              <textarea className={`${inputClass} min-h-36 resize-y`} name="mensaje" placeholder="Describe el alcance, etapa de obra o requerimiento eléctrico." />
-            </label>
-          </div>
-          <button type="submit" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-navy px-5 py-4 text-sm font-extrabold text-white transition hover:bg-steel sm:w-auto">
-            <Send size={18} />
-            Enviar solicitud
-          </button>
-        </form>
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setStatus('submitting')
+    // Simulate form submission
+    setTimeout(() => {
+      setStatus('success')
+    }, 1000)
+  }
+
+  return (
+    <section id="contacto" className="section-padding bg-mist">
+      <div className="container-page max-w-4xl">
+        <AnimatedSection className="text-center mb-10">
+          <h2 className="section-title text-navy mx-auto">Contacto</h2>
+          <p className="mt-4 text-gray text-lg">
+            Respondemos con enfoque técnico, no con respuestas genéricas.
+          </p>
+        </AnimatedSection>
+
+        <AnimatedSection as="div" className="bg-white p-8 sm:p-10 rounded border border-gray/20 shadow-sm">
+          {status === 'success' ? (
+            <div className="text-center py-10">
+              <h3 className="text-2xl font-bold text-navy mb-3">Mensaje enviado</h3>
+              <p className="text-gray">Hemos recibido tu información. Un ingeniero se pondrá en contacto pronto.</p>
+              <button 
+                onClick={() => setStatus('idle')}
+                className="mt-6 btn-secondary"
+              >
+                Enviar otro mensaje
+              </button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="grid gap-6 sm:grid-cols-2">
+              <div className="flex flex-col gap-2">
+                <label htmlFor="nombre" className="text-sm font-bold text-navy">Nombre *</label>
+                <input 
+                  type="text" 
+                  id="nombre" 
+                  required 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <label htmlFor="empresa" className="text-sm font-bold text-navy">Empresa *</label>
+                <input 
+                  type="text" 
+                  id="empresa" 
+                  required 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <label htmlFor="telefono" className="text-sm font-bold text-navy">Teléfono *</label>
+                <input 
+                  type="tel" 
+                  id="telefono" 
+                  required 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <label htmlFor="correo" className="text-sm font-bold text-navy">Correo *</label>
+                <input 
+                  type="email" 
+                  id="correo" 
+                  required 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                />
+              </div>
+              
+              <div className="flex flex-col gap-2">
+                <label htmlFor="proyecto" className="text-sm font-bold text-navy">Tipo de proyecto</label>
+                <select 
+                  id="proyecto" 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric"
+                >
+                  <option value="">Selecciona una opción</option>
+                  <option value="nueva-instalacion">Nueva instalación</option>
+                  <option value="mantenimiento">Mantenimiento</option>
+                  <option value="adecuacion">Adecuación / Remodelación</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+
+              <div className="flex flex-col gap-2">
+                <label htmlFor="ciudad" className="text-sm font-bold text-navy">Ciudad</label>
+                <input 
+                  type="text" 
+                  id="ciudad" 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                />
+              </div>
+              
+              <div className="sm:col-span-2 flex flex-col gap-2">
+                <label htmlFor="mensaje" className="text-sm font-bold text-navy">Mensaje</label>
+                <textarea 
+                  id="mensaje" 
+                  rows={4} 
+                  className="rounded border border-gray/30 bg-white px-4 py-3 text-sm focus:border-electric focus:outline-none focus:ring-1 focus:ring-electric" 
+                ></textarea>
+              </div>
+              
+              <div className="sm:col-span-2 mt-2">
+                <button 
+                  type="submit" 
+                  disabled={status === 'submitting'}
+                  className="btn-primary w-full sm:w-auto"
+                >
+                  {status === 'submitting' ? 'Enviando...' : 'Enviar solicitud'}
+                </button>
+              </div>
+            </form>
+          )}
+        </AnimatedSection>
       </div>
     </section>
   )

@@ -9,12 +9,11 @@ export default {
         electric: '#F5B400',
         mist: '#F4F6F8',
         carbon: '#111827',
+        gray: '#6B7280',
+        white: '#FFFFFF',
       },
       fontFamily: {
-        sans: ['Inter', 'Manrope', 'system-ui', 'sans-serif'],
-      },
-      boxShadow: {
-        industrial: '0 18px 60px rgba(11, 31, 51, 0.14)',
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
     },
   },
