@@ -3,3 +3,9 @@ dist
 .env
 .env.local
 npm-debug.log*
+.venv
+backend/.venv
+__pycache__
+.pytest_cache
+.ruff_cache
+*.pyc

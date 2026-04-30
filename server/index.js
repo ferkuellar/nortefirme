@@ -167,7 +167,7 @@ app.delete('/api/projects/:id', requireApiKey, async (req, res, next) => {
   }
 })
 
-app.use((error, req, res, next) => {
+app.use((error, req, res, _next) => {
   console.error(error)
   res.status(500).json({ error: 'No fue posible procesar la solicitud.' })
 })
