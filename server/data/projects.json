@@ -1,0 +1,57 @@
+[
+  {
+    "id": "instalaciones-industriales",
+    "title": "Instalaciones eléctricas industriales",
+    "category": "Baja tensión",
+    "location": "Chihuahua, México",
+    "status": "Documentación disponible",
+    "summary": "Distribución eléctrica, canalización y fuerza para operación industrial con criterios de seguridad y mantenimiento.",
+    "image": "https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80",
+    "metrics": ["Fuerza y alumbrado", "Canalización ordenada", "Evidencia de avance"],
+    "featured": true
+  },
+  {
+    "id": "tableros-canalizaciones",
+    "title": "Tableros y canalizaciones",
+    "category": "Distribución eléctrica",
+    "location": "Chihuahua, México",
+    "status": "En portafolio",
+    "summary": "Armado, identificación y ordenamiento de tableros generales y derivados con rutas eléctricas coordinadas.",
+    "image": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=900&q=80",
+    "metrics": ["Tableros identificados", "Rutas accesibles", "Control visual"],
+    "featured": true
+  },
+  {
+    "id": "subestaciones-transformadores",
+    "title": "Subestaciones y transformadores",
+    "category": "Media tensión",
+    "location": "Chihuahua, México",
+    "status": "Documentación técnica",
+    "summary": "Infraestructura de media tensión para alimentación, transformación y continuidad eléctrica en proyectos formales.",
+    "image": "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=900&q=80",
+    "metrics": ["Media tensión", "Revisión de capacidades", "Entrega técnica"],
+    "featured": true
+  },
+  {
+    "id": "alumbrado-fuerza",
+    "title": "Alumbrado y fuerza",
+    "category": "Baja tensión",
+    "location": "Chihuahua, México",
+    "status": "Evidencia fotográfica",
+    "summary": "Sistemas de alumbrado, fuerza y distribución para áreas productivas, comerciales y de servicios.",
+    "image": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80",
+    "metrics": ["Áreas operativas", "Fuerza distribuida", "Instalación revisable"],
+    "featured": true
+  },
+  {
+    "id": "mantenimiento-electrico",
+    "title": "Mantenimiento eléctrico",
+    "category": "Preventivo y correctivo",
+    "location": "Chihuahua, México",
+    "status": "Atención en campo",
+    "summary": "Inspección, diagnóstico y corrección de instalaciones eléctricas para conservar seguridad y continuidad operativa.",
+    "image": "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=900&q=80",
+    "metrics": ["Diagnóstico en sitio", "Corrección de fallas", "Reporte de servicio"],
+    "featured": true
+  }
+]
