@@ -1,18 +1,22 @@
-from math import ceil
 from typing import Generic, TypeVar
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 T = TypeVar("T")
 
-
-class Page(BaseModel, Generic[T]):
+class PaginatedResponse(BaseModel, Generic[T]):
     items: list[T]
-    page: int = Field(ge=1)
-    limit: int = Field(ge=1, le=100)
+    page: int
+    limit: int
     total: int
     pages: int
 
-
-def build_page(items: list[T], total: int, page: int, limit: int) -> Page[T]:
-    return Page(items=items, page=page, limit=limit, total=total, pages=ceil(total / limit) if total else 0)
+def paginate(items: list[T], page: int, limit: int, total: int) -> PaginatedResponse[T]:
+    pages = (total + limit - 1) // limit if limit > 0 else 0
+    return PaginatedResponse(
+        items=items,
+        page=page,
+        limit=limit,
+        total=total,
+        pages=pages
+    )
